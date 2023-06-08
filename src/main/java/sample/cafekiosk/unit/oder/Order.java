@@ -1,7 +1,8 @@
-package sample.cafekiosk.unit.beverages;
+package sample.cafekiosk.unit.oder;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import sample.cafekiosk.unit.beverages.Beverage;
 
 import java.time.LocalDateTime;
 import java.util.List;
