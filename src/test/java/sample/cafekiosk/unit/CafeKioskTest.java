@@ -2,6 +2,7 @@ package sample.cafekiosk.unit;
 
 import org.junit.jupiter.api.Test;
 import sample.cafekiosk.unit.beverages.Americano;
+import sample.cafekiosk.unit.beverages.Latte;
 import sample.cafekiosk.unit.oder.Order;
 
 import java.time.LocalDateTime;
@@ -79,6 +80,23 @@ class CafeKioskTest {
                 .hasMessage("주문 가능 시간이 아닙니다. 관리자에게 문의하세요.");
     }
 
+    @Test
+    void calculateTotalPrice() {
+        //given
+        CafeKiosk cafeKiosk = new CafeKiosk();
+        Americano americano = new Americano();
+        Latte latte = new Latte();
+
+        cafeKiosk.add(americano);
+        cafeKiosk.add(latte);
+
+        //when
+        int totalPrice = cafeKiosk.calculateTotalPrice();
+
+        //then
+        assertThat(totalPrice).isEqualTo(8500);
+    }
+
 //    @Test
 //    void remove() {
 //        // given
@@ -114,4 +132,5 @@ class CafeKioskTest {
 //        // then
 //        assertThat(cafeKiosk.getBeverages()).isEmpty();
 //    }
+
 }

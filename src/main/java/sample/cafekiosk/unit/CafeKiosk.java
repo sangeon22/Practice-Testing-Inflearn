@@ -8,6 +8,7 @@ import sample.cafekiosk.unit.oder.Order;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Getter
@@ -29,6 +30,10 @@ public class CafeKiosk {
         }
     }
 
+    public void add(Beverage beverage) {
+        beverages.add(beverage);
+    }
+
     public void remove(Beverage beverage) {
         beverages.remove(beverage);
     }
@@ -37,13 +42,24 @@ public class CafeKiosk {
         beverages.clear();
     }
 
-    public int calTotalPrice() {
+    public int calculateTotalPrice() {
         int totalPrice = 0;
-        for (Beverage beverage : beverages) {
-            totalPrice += beverage.getPrice();
-        }
-        return totalPrice;
+//        for (Beverage beverage :beverages) {
+//            totalPrice += beverage.getPrice();
+//        }
+//        return totalPrice;
+        return beverages.stream()
+                .mapToInt(Beverage::getPrice)
+                .sum();
     }
+
+//    public int calTotalPrice() {
+//        int totalPrice = 0;
+//        for (Beverage beverage : beverages) {
+//            totalPrice += beverage.getPrice();
+//        }
+//        return totalPrice;
+//    }
 
     public Order createOrder(LocalDateTime currentDateTime) {
 //        LocalDateTime currentDateTime = LocalDateTime.now();
@@ -53,4 +69,6 @@ public class CafeKiosk {
         }
         return new Order(currentDateTime, beverages);
     }
+
+
 }
