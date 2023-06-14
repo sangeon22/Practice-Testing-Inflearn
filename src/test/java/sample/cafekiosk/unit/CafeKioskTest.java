@@ -1,5 +1,6 @@
 package sample.cafekiosk.unit;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import sample.cafekiosk.unit.beverages.Americano;
 import sample.cafekiosk.unit.beverages.Latte;
@@ -11,15 +12,17 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CafeKioskTest {
-//    @Test
-//    void add() {
-//        CafeKiosk cafeKiosk = new CafeKiosk();
-//        cafeKiosk.add(new Americano());
-//
-//        assertThat(cafeKiosk.getBeverages().size()).isEqualTo(1);
-//        assertThat(cafeKiosk.getBeverages()).hasSize(1);
-//        assertThat(cafeKiosk.getBeverages().get(0).getName()).isEqualTo("아메리카노");
-//    }
+
+    @DisplayName("음료 1개를 추가하면 주문 목록에 담긴다.")
+    @Test
+    void add() {
+        CafeKiosk cafeKiosk = new CafeKiosk();
+        cafeKiosk.add(new Americano());
+
+        assertThat(cafeKiosk.getBeverages().size()).isEqualTo(1);
+        assertThat(cafeKiosk.getBeverages()).hasSize(1);
+        assertThat(cafeKiosk.getBeverages().get(0).getName()).isEqualTo("아메리카노");
+    }
 
     @Test
     void addSeveralBeverages() {
@@ -80,9 +83,10 @@ class CafeKioskTest {
                 .hasMessage("주문 가능 시간이 아닙니다. 관리자에게 문의하세요.");
     }
 
+    @DisplayName("주문 목록에 담긴 상품들의 총 금액을 계산할 수 있다.")
     @Test
     void calculateTotalPrice() {
-        //given
+        // given - 테스트에 필요한 준비(객체, 상태, 값)
         CafeKiosk cafeKiosk = new CafeKiosk();
         Americano americano = new Americano();
         Latte latte = new Latte();
@@ -90,13 +94,26 @@ class CafeKioskTest {
         cafeKiosk.add(americano);
         cafeKiosk.add(latte);
 
-        //when
+        // when(메서드를 호출하는 단계, 시나리오를 수행하는 단계)
         int totalPrice = cafeKiosk.calculateTotalPrice();
 
-        //then
+        // then(검증하는 단계)
         assertThat(totalPrice).isEqualTo(8500);
     }
 
+    @DisplayName("")
+    @Test
+    void test()
+    {
+        // given
+
+
+        // when
+
+
+        // then
+
+    }
 //    @Test
 //    void remove() {
 //        // given
